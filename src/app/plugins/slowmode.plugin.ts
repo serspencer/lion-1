@@ -5,7 +5,7 @@ import { ChannelType, IContainer, IMessage } from '../../common/types';
 export class SlowModePlugin extends Plugin {
   public name: string = 'Slowmode Plugin';
   public description: string = 'add slowmode via command for TA\'s';
-  public usage: string = '!slowmode <time>';
+  public usage: string = 'slowmode <time>';
   public pluginAlias = [];
   public permission: ChannelType = ChannelType.Public;
   
@@ -14,12 +14,18 @@ export class SlowModePlugin extends Plugin {
   }
 
   public async execute(message: IMessage, args?: string[]) {
-      if (!args || args.length <= 0) {
-        message.reply('Error');
-        return;
-      }
 
-      message.channel(TextChannel).setRateLimitPerUser(args[0]);
     
+    if (!args || args.length <= 0) {
+      message.reply('Error');
+      return;
+    }
+
+    const sample = message.channel as TextChannel;
+    const time = +args[0] as number;
+    
+    sample.setRateLimitPerUser(time);
+    
+    return;
   }
 }
