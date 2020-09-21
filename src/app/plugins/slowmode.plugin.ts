@@ -6,7 +6,7 @@ export class SlowModePlugin extends Plugin {
   public name: string = 'Slowmode Plugin';
   public description: string = 'add slowmode for 0 - 21600 seconds';
   public usage: string = 'slowmode <time>';
-  public pluginAlias = [];
+  public pluginAlias = ['slow'];
   public permission: ChannelType = ChannelType.Public;
   
   constructor(public container: IContainer) {
